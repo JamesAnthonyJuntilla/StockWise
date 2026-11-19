@@ -1,0 +1,39 @@
+Options -Indexes
+DirectoryIndex index.php
+
+# Prevent direct access to includes directory
+<Files "*.php">
+    # Allow PHP files
+</Files>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /stockwise/
+
+    # Redirect to login if accessing root
+    RewriteRule ^$ index.php [L]
+</IfModule>
+
+# Restrict access to includes and database directories
+<DirectoryMatch "^.*(includes|database)$">
+    Require all denied
+</DirectoryMatch>
+
+# Allow only image files in product uploads
+<Directory "assets/images/products">
+    <FilesMatch "\.php$">
+        Require all denied
+    </FilesMatch>
+</Directory>
+
+# Security headers
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options SAMEORIGIN
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy strict-origin-when-cross-origin
+</IfModule>
+
+# PHP error handling
+php_flag display_errors Off
+php_flag log_errors On

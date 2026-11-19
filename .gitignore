@@ -1,0 +1,32 @@
+# ── OS / Editor noise ──────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# ── PHP error log ───────────────────────────────────────────────────────
+logs/php_errors.log
+logs/*.log
+
+# ── Uploaded product images (local only; use a separate asset pipeline) ──
+assets/images/products/*.jpg
+assets/images/products/*.jpeg
+assets/images/products/*.png
+assets/images/products/*.gif
+assets/images/products/*.webp
+# Keep the directory via .gitkeep:
+!assets/images/products/.gitkeep
+
+# ── Database credentials / environment config ───────────────────────────
+# If you ever add a .env file, exclude it here:
+.env
+
+# ── Seed password script ─────────────────────────────────────────────────
+# Comment this line out if you need to share it, then remove it after setup.
+# database/seed_passwords.php
+
+# ── Composer / Node (not used here, but safety net) ─────────────────────
+vendor/
+node_modules/
